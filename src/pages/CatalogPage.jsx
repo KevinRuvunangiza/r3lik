@@ -20,7 +20,7 @@ export default function CatalogPage() {
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-[#050505] text-[#f4f4f4] flex flex-col selection:bg-[#f4f4f4] selection:text-[#050505]">
+    <div className="relative w-full min-h-screen text-[#f4f4f4] flex flex-col selection:bg-[#f4f4f4] selection:text-[#050505]" style={{ backgroundColor: 'var(--color-background)' }}>
       {/* CRT Overlays */}
       <div className="pointer-events-none fixed inset-0 z-50 opacity-10">
         <div className="w-full h-[10px] bg-white/20 blur-[2px] animate-scanline" />
@@ -37,8 +37,8 @@ export default function CatalogPage() {
       <main className="p-4 md:p-6 grid grid-cols-1 md:grid-cols-12 gap-4 relative z-10 w-full flex-grow font-mono">
         {/* LEFT PANEL: Filters / Categories */}
         <div className="md:col-span-2 flex flex-col gap-8">
-          <div className="border border-zinc-800 p-4 bg-zinc-900/10">
-            <h3 className="text-xs text-zinc-500 mb-4 border-b border-zinc-800 pb-2">
+          <div className="border p-4" style={{ borderColor: 'var(--color-twilight-mauve)', backgroundColor: 'rgba(85, 48, 58, 0.1)' }}>
+            <h3 className="text-xs mb-4 pb-2" style={{ color: 'var(--color-twilight-mauve)', borderBottom: '1px solid', borderColor: 'var(--color-twilight-mauve)' }}>
               SYS_FILTERS
             </h3>
             <ul className="space-y-3 text-sm">
@@ -46,7 +46,8 @@ export default function CatalogPage() {
                 (filter, i) => (
                   <li
                     key={filter}
-                    className={`cursor-pointer hover:text-white transition-colors flex items-center gap-2 ${i === 0 ? "text-white" : "text-zinc-500"}`}
+                    className={`cursor-pointer transition-colors flex items-center gap-2`}
+                    style={{ color: i === 0 ? 'var(--color-aster-petal)' : 'var(--color-twilight-mauve)' }}
                   >
                     {i === 0 && <span className="text-xs">▶</span>} {filter}
                   </li>
@@ -57,12 +58,12 @@ export default function CatalogPage() {
         </div>
 
         {/* CENTER PANEL: Database Grid */}
-        <div className="md:col-span-6 border border-zinc-800 bg-zinc-900/10 p-4 h-[75vh] overflow-y-auto custom-scrollbar">
-          <div className="flex justify-between items-center mb-6 border-b border-zinc-800 pb-2">
-            <h3 className="text-xs text-zinc-500">
+        <div className="md:col-span-6 border p-4 h-[75vh] overflow-y-auto custom-scrollbar" style={{ borderColor: 'var(--color-twilight-mauve)', backgroundColor: 'rgba(95, 79, 126, 0.1)' }}>
+          <div className="flex justify-between items-center mb-6 pb-2" style={{ borderBottom: '1px solid', borderColor: 'var(--color-twilight-mauve)', color: 'var(--color-twilight-mauve)' }}>
+            <h3 className="text-xs">
               AVAILABLE_ASSETS ({R3LIK_DB.items.length})
             </h3>
-            <TbGridDots className="text-zinc-500" />
+            <TbGridDots />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -71,20 +72,24 @@ export default function CatalogPage() {
                 <motion.div
                   onMouseEnter={() => setActiveItem(item)}
                   whileHover={{ scale: 0.98 }}
-                  className={`border p-3 cursor-pointer transition-colors flex flex-col justify-between min-h-[160px] ${activeItem.id === item.id ? "border-zinc-300 bg-zinc-900/40" : "border-zinc-800 hover:border-zinc-500"}`}
+                  className={`border p-3 cursor-pointer transition-colors flex flex-col justify-between min-h-[160px]`}
+                  style={{
+                    borderColor: activeItem.id === item.id ? 'var(--color-aster-petal)' : 'var(--color-twilight-mauve)',
+                    backgroundColor: activeItem.id === item.id ? 'rgba(85, 48, 58, 0.4)' : 'transparent'
+                  }}
                 >
                 <div className="flex justify-between items-start">
-                  <span className="text-[10px] text-zinc-500">{item.id}</span>
+                  <span className="text-[10px]" style={{ color: 'var(--color-twilight-mauve)' }}>{item.id}</span>
                   {activeItem.id === item.id && (
-                    <TbCrosshair className="animate-spin-slow text-zinc-400" />
+                    <TbCrosshair className="animate-spin-slow" style={{ color: 'var(--color-roan-rouge)' }} />
                   )}
                 </div>
                 <div>
-                  <p className="text-xs text-zinc-400 mb-1">{item.sys_name}</p>
-                  <h4 className="text-sm font-bold uppercase truncate">
+                  <p className="text-xs mb-1" style={{ color: 'var(--color-twilight-mauve)' }}>{item.sys_name}</p>
+                  <h4 className="text-sm font-bold uppercase truncate" style={{ color: 'var(--color-aster-petal)' }}>
                     {item.title}
                   </h4>
-                  <p className="text-xs mt-2">{item.price}</p>
+                  <p className="text-xs mt-2" style={{ color: 'var(--color-bottlefly-wings)' }}>{item.price}</p>
                 </div>
                 </motion.div>
               </Link>
@@ -93,11 +98,11 @@ export default function CatalogPage() {
         </div>
 
         {/* RIGHT PANEL: The Inspector (Character Select View) */}
-        <div className="md:col-span-4 border border-zinc-800 flex flex-col relative overflow-hidden bg-zinc-900/20 min-h-[75vh]">
+        <div className="md:col-span-4 border flex flex-col relative overflow-hidden min-h-[75vh]" style={{ borderColor: 'var(--color-twilight-mauve)', backgroundColor: 'rgba(95, 79, 126, 0.1)' }}>
           {/* Background ID Text */}
           <div
-            className="absolute top-10 -right-10 text-[8vw] font-black text-zinc-800/20 rotate-90 pointer-events-none select-none tracking-tighter"
-            style={{ fontFamily: "Syncopate" }}
+            className="absolute top-10 -right-10 text-[8vw] font-black rotate-90 pointer-events-none select-none tracking-tighter opacity-20"
+            style={{ fontFamily: "Syncopate", color: 'var(--color-twilight-mauve)' }}
           >
             {activeItem.id}
           </div>
@@ -114,7 +119,8 @@ export default function CatalogPage() {
               {/* MODIFIED: Clickable Image / Mannequin Container */}
               <Link 
                 to={`/catalog/${activeItem.id}`}
-                className="flex-grow border-b border-zinc-800 relative flex items-center justify-center p-4 group cursor-pointer overflow-hidden"
+                className="flex-grow relative flex items-center justify-center p-4 group cursor-pointer overflow-hidden"
+                style={{ borderBottom: '1px solid', borderColor: 'var(--color-twilight-mauve)' }}
               >
                 <motion.img
                   whileHover={{ scale: 1.05 }}
@@ -128,36 +134,36 @@ export default function CatalogPage() {
                 <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-300 z-20 pointer-events-none"></div>
 
                 {/* Corner Accents that react to hover */}
-                <div className="absolute top-4 left-4 border-l-2 border-t-2 border-zinc-500 w-4 h-4 group-hover:border-zinc-300 transition-colors z-20"></div>
-                <div className="absolute bottom-4 right-4 border-r-2 border-b-2 border-zinc-500 w-4 h-4 group-hover:border-zinc-300 transition-colors z-20"></div>
+                <div className="absolute top-4 left-4 border-l-2 border-t-2 w-4 h-4 group-hover:transition-colors group-hover:duration-300" style={{ borderColor: 'var(--color-twilight-mauve)' }}></div>
+                <div className="absolute bottom-4 right-4 border-r-2 border-b-2 w-4 h-4 group-hover:transition-colors group-hover:duration-300" style={{ borderColor: 'var(--color-twilight-mauve)' }}></div>
               </Link>
 
               {/* Data Block */}
-              <div className="p-6 bg-[#050505]/80 backdrop-blur-sm">
+              <div className="p-6 backdrop-blur-sm" style={{ backgroundColor: 'rgba(30, 24, 33, 0.95)' }}>
                 <h2
                   className="text-2xl font-bold uppercase mb-1 tracking-tight"
-                  style={{ fontFamily: "Syncopate" }}
+                  style={{ fontFamily: "Syncopate", color: 'var(--color-aster-petal)' }}
                 >
                   {activeItem.title}
                 </h2>
-                <p className="text-lg mb-6">{activeItem.price}</p>
+                <p className="text-lg mb-6" style={{ color: 'var(--color-bottlefly-wings)' }}>{activeItem.price}</p>
 
-                <div className="space-y-2 text-xs mb-6 border-y border-zinc-800 py-4">
+                <div className="space-y-2 text-xs mb-6 py-4" style={{ borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'var(--color-roan-rouge)', color: 'var(--color-twilight-mauve)' }}>
                   <div className="flex justify-between">
-                    <span className="text-zinc-500">Class</span>
-                    <span>{activeItem.armor_type}</span>
+                    <span>Class</span>
+                    <span style={{ color: 'var(--color-bottlefly-wings)' }}>{activeItem.armor_type}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-zinc-500">Material</span>
-                    <span>{activeItem.material}</span>
+                    <span>Material</span>
+                    <span style={{ color: 'var(--color-bottlefly-wings)' }}>{activeItem.material}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-zinc-500">Weight</span>
-                    <span>{activeItem.weight}</span>
+                    <span>Weight</span>
+                    <span style={{ color: 'var(--color-bottlefly-wings)' }}>{activeItem.weight}</span>
                   </div>
                 </div>
 
-                <p className="text-xs text-zinc-400 leading-relaxed mb-8">
+                <p className="text-xs leading-relaxed mb-8" style={{ color: 'var(--color-twilight-mauve)' }}>
                   {activeItem.description}
                 </p>
 
@@ -168,7 +174,13 @@ export default function CatalogPage() {
                     onMouseLeave={() => setIsHoveringEquip(false)}
                     whileHover="hover"
                     initial="rest"
-                    className="w-full border border-zinc-500 p-4 text-sm font-bold uppercase hover:bg-[#f4f4f4] hover:text-[#050505] transition-all flex justify-between items-center group"
+                    className="w-full p-4 text-sm font-bold uppercase transition-all flex justify-between items-center group"
+                    style={{
+                      borderColor: 'var(--color-roan-rouge)',
+                      border: '1px solid',
+                      color: isHoveringEquip ? 'var(--color-night-demons)' : 'var(--color-aster-petal)',
+                      backgroundColor: isHoveringEquip ? 'var(--color-aster-petal)' : 'transparent'
+                    }}
                   >
                     <motion.span variants={glitchVariant}>
                       {isHoveringEquip ? "INSPECT_ASSET" : "EQUIP_ITEM"}

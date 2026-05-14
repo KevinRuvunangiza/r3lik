@@ -1,7 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syncopate:wght@400;700&display=swap');
 @import "tailwindcss";
 
-
+/* Color Palette */
+:root {
+  /* Primary Colors */
+  --color-night-demons: #1E1821;
+  --color-port-royale: #55303A;
+  --color-roan-rouge: #875256;
+  
+  /* Secondary Colors */
+  --color-twilight-mauve: #95797E;
+  --color-crystal-noir: #AAA2A8;
+  --color-bottlefly-wings: #BFC2C8;
+  --color-aster-petal: #D4DBE2;
+  
+  /* Semantic Colors */
+  --color-background: #050505;
+  --color-text: #f4f4f4;
+}
 
 @layer base {
   html, body, #root {
@@ -13,8 +29,8 @@
   
   html {
     font-family: 'Space Mono', monospace;
-    background-color: #050505;
-    color: #f4f4f4;
+    background-color: var(--color-background);
+    color: var(--color-text);
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -30,4 +46,25 @@
 
 .animate-scanline {
   animation: scanline 8s linear infinite;
+}
+
+/* Component Styles using Color Palette */
+.palette-border {
+  border-color: var(--color-twilight-mauve);
+}
+
+.palette-border-light {
+  border-color: var(--color-bottlefly-wings);
+}
+
+.palette-bg-accent {
+  background-color: rgba(85, 48, 58, 0.1);
+}
+
+.palette-accent-text {
+  color: var(--color-roan-rouge);
+}
+
+.palette-secondary-text {
+  color: var(--color-twilight-mauve);
 }
