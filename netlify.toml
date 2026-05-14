@@ -1,0 +1,12 @@
+[build]
+  # This is the command Vite uses to bundle R3lik
+  command = "npm run build"
+  
+  # This ensures Netlify looks in 'dist' for your compiled JS/CSS
+  publish = "dist"
+
+[[redirects]]
+  # This fixes the MIME/404 errors when refreshing on /catalog or /archive
+  from = "/*"
+  to = "/index.html"
+  status = 200
