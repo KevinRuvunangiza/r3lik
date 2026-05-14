@@ -1,0 +1,53 @@
+{
+  "system_copy": {
+    "title": "INVENTORY_DB",
+    "version": "v2.0.4",
+    "status": "SECURE_CONNECTION"
+  },
+  "items": [
+    {
+      "id": "R3-001",
+      "sys_name": "HEAVY_PUFFER_V1",
+      "title": "Void Puffer Jacket",
+      "price": "2,500 ZAR",
+      "armor_type": "Outerwear",
+      "material": "Nylon / Down",
+      "weight": "1.2kg",
+      "description": "Maximum thermal retention. Voluminous silhouette engineered for concrete environments.",
+      "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "id": "R3-002",
+      "sys_name": "TACTICAL_CARGO_04",
+      "title": "Onyx Cargo Pants",
+      "price": "1,800 ZAR",
+      "armor_type": "Legwear",
+      "material": "Ripstop Cotton",
+      "weight": "0.8kg",
+      "description": "Articulated knees. 8-pocket system. Built for utility and movement.",
+      "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "id": "R3-003",
+      "sys_name": "CORE_TSHIRT_BLK",
+      "title": "Essential Box Tee",
+      "price": "600 ZAR",
+      "armor_type": "Base Layer",
+      "material": "Heavyweight Cotton",
+      "weight": "0.3kg",
+      "description": "Boxy fit, dropped shoulders. The foundational layer of the R3lik system.",
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+      "id": "R3-004",
+      "sys_name": "MESH_RUNNER_SIL",
+      "title": "Chrome Runners",
+      "price": "3,200 ZAR",
+      "armor_type": "Footwear",
+      "material": "Mesh / Vibram",
+      "weight": "0.9kg",
+      "description": "Y2K inspired aggressive tread pattern. Breathable mesh upper.",
+      "image": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=800&auto=format&fit=crop"
+    }
+  ]
+}

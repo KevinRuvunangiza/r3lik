@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syncopate:wght@400;700&display=swap');
+@import "tailwindcss";
+
+
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    font-family: 'Space Mono', monospace;
+    background-color: #050505;
+    color: #f4f4f4;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syncopate', sans-serif;
+  }
+}
+
+/* Custom scanline animation for the background */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.animate-scanline {
+  animation: scanline 8s linear infinite;
+}
