@@ -43,24 +43,24 @@ export default function ArchivePage() {
   };
 
   return (
-    <div className="w-full flex-grow flex flex-col p-4 md:p-6 font-mono relative z-10" style={{ backgroundColor: 'var(--color-background)' }}>
+    <div className="w-full flex-grow flex flex-col p-3 sm:p-4 md:p-6 font-mono relative z-10" style={{ backgroundColor: 'var(--color-background)' }}>
       
       {/* THE BOOT SEQUENCE OVERLAY */}
       {!isBooted && (
-        <div className="absolute inset-0 z-50 flex flex-col items-start justify-center p-12 backdrop-blur-md" style={{ backgroundColor: 'rgba(30, 24, 33, 0.95)' }}>
-          <TbTerminal className="text-4xl mb-6 animate-pulse" style={{ color: 'var(--color-roan-rouge)' }} />
+        <div className="absolute inset-0 z-50 flex flex-col items-start justify-center p-6 sm:p-8 md:p-12 backdrop-blur-md" style={{ backgroundColor: 'rgba(30, 24, 33, 0.95)' }}>
+          <TbTerminal className="text-3xl sm:text-4xl mb-4 sm:mb-6 animate-pulse" style={{ color: 'var(--color-roan-rouge)' }} />
           {bootLog.map((log, i) => (
             <motion.p 
               key={i} 
               initial={{ opacity: 0, x: -10 }} 
               animate={{ opacity: 1, x: 0 }} 
-              className="font-bold mb-2 text-sm uppercase tracking-widest"
+              className="font-bold mb-1 sm:mb-2 text-xs sm:text-sm uppercase tracking-widest"
               style={{ color: 'var(--color-roan-rouge)' }}
             >
               {`> ${log}`}
             </motion.p>
           ))}
-          <span className="w-3 h-5 animate-ping mt-4 block" style={{ backgroundColor: 'var(--color-roan-rouge)' }} />
+          <span className="w-2 sm:w-3 h-4 sm:h-5 animate-ping mt-3 sm:mt-4 block" style={{ backgroundColor: 'var(--color-roan-rouge)' }} />
         </div>
       )}
 
@@ -69,20 +69,20 @@ export default function ArchivePage() {
         variants={containerVars}
         initial="hidden"
         animate={isBooted ? "show" : "hidden"}
-        className="grid grid-cols-1 md:grid-cols-12 gap-4 flex-grow"
+        className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 md:gap-4 flex-grow auto-rows-max md:auto-rows-auto"
       >
         
         {/* LORE / MANIFESTO (Span 8) */}
-        <motion.div variants={itemVars} className="md:col-span-8 border p-6 md:p-10 flex flex-col relative overflow-hidden group" style={{ borderColor: 'var(--color-twilight-mauve)', backgroundColor: 'rgba(85, 48, 58, 0.1)' }}>
-          <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity" style={{ color: 'var(--color-twilight-mauve)' }}>
-            <TbFingerprint className="text-[200px]" />
+        <motion.div variants={itemVars} className="md:col-span-8 border p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col relative overflow-hidden group" style={{ borderColor: 'var(--color-twilight-mauve)', backgroundColor: 'rgba(85, 48, 58, 0.1)' }}>
+          <div className="absolute top-0 right-0 p-2 sm:p-4 opacity-10 group-hover:opacity-20 transition-opacity" style={{ color: 'var(--color-twilight-mauve)' }}>
+            <TbFingerprint className="text-[80px] sm:text-[120px] md:text-[160px] lg:text-[200px]" />
           </div>
           
-          <h2 className="text-xs uppercase tracking-[0.3em] mb-8 pb-4 inline-flex items-center gap-2" style={{ color: 'var(--color-twilight-mauve)', borderBottom: '1px solid', borderColor: 'var(--color-twilight-mauve)' }}>
-            <TbActivity className="animate-pulse" style={{ color: 'var(--color-aster-petal)' }} /> Core_Directive.txt
+          <h2 className="text-xs uppercase tracking-[0.3em] mb-4 sm:mb-6 md:mb-8 pb-3 sm:pb-4 inline-flex items-center gap-2" style={{ color: 'var(--color-twilight-mauve)', borderBottom: '1px solid', borderColor: 'var(--color-twilight-mauve)' }}>
+            <TbActivity className="animate-pulse text-sm" style={{ color: 'var(--color-aster-petal)' }} /> Core_Directive.txt
           </h2>
           
-          <div className="space-y-6 text-sm md:text-base leading-relaxed max-w-2xl relative z-10" style={{ color: 'var(--color-twilight-mauve)' }}>
+          <div className="space-y-3 sm:space-y-4 md:space-y-6 text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl relative z-10" style={{ color: 'var(--color-twilight-mauve)' }}>
             <p>
               <strong style={{ color: 'var(--color-aster-petal)' }}>R3LIK</strong> was not born from a desire to add to the noise. It was compiled as an executable response to excess.
             </p>
@@ -94,63 +94,63 @@ export default function ArchivePage() {
             </p>
           </div>
 
-          <div className="mt-auto pt-12">
-            <div className="inline-block border p-3 text-xs" style={{ borderColor: 'var(--color-roan-rouge)', backgroundColor: 'rgba(30, 24, 33, 0.95)', color: 'var(--color-twilight-mauve)' }}>
+          <div className="mt-auto pt-6 sm:pt-8 md:pt-12">
+            <div className="inline-block border p-2 sm:p-3 text-[10px] sm:text-xs" style={{ borderColor: 'var(--color-roan-rouge)', backgroundColor: 'rgba(30, 24, 33, 0.95)', color: 'var(--color-twilight-mauve)' }}>
               EST. 2025 // JOHANNESBURG_ZA
             </div>
           </div>
         </motion.div>
 
         {/* SYSTEM ARCHITECTS (Span 4) */}
-        <motion.div variants={itemVars} className="md:col-span-4 flex flex-col gap-4">
+        <motion.div variants={itemVars} className="md:col-span-4 flex flex-col gap-3 sm:gap-4">
           
-          <div className="border p-4" style={{ borderColor: 'var(--color-twilight-mauve)', backgroundColor: 'rgba(85, 48, 58, 0.1)' }}>
-            <h3 className="text-xs mb-4 flex justify-between items-center" style={{ color: 'var(--color-twilight-mauve)' }}>
+          <div className="border p-3 sm:p-4" style={{ borderColor: 'var(--color-twilight-mauve)', backgroundColor: 'rgba(85, 48, 58, 0.1)' }}>
+            <h3 className="text-[10px] sm:text-xs mb-3 sm:mb-4 flex justify-between items-center" style={{ color: 'var(--color-twilight-mauve)' }}>
               <span>SYS_ARCHITECTS</span>
-              <TbCpu className="text-lg" />
+              <TbCpu className="text-base sm:text-lg" />
             </h3>
             
-            <div className="space-y-3">
+            <div className="space-y-2 sm:space-y-3">
               {/* Founder 1 */}
               <div className="group cursor-default">
-                <div className="flex justify-between text-xs transition-colors" style={{ color: 'var(--color-twilight-mauve)' }}>
+                <div className="flex justify-between text-[10px] sm:text-xs transition-colors" style={{ color: 'var(--color-twilight-mauve)' }}>
                   <span className="font-bold" style={{ color: 'var(--color-bottlefly-wings)' }}>ADMIN_01</span>
-                  <span>[LEAD_DEV]</span>
+                  <span className="text-[9px] sm:text-[10px]">[LEAD_DEV]</span>
                 </div>
                 <div className="w-full h-[1px] my-1 group-hover:transition-colors" style={{ backgroundColor: 'var(--color-twilight-mauve)' }} />
-                <span className="text-[10px] block uppercase" style={{ color: 'var(--color-twilight-mauve)' }}>Technical Infrastructure & Systems</span>
+                <span className="text-[9px] block uppercase" style={{ color: 'var(--color-twilight-mauve)' }}>Technical Infrastructure & Systems</span>
               </div>
 
               {/* Founder 2 */}
-              <div className="group cursor-default pt-2">
-                <div className="flex justify-between text-xs transition-colors" style={{ color: 'var(--color-twilight-mauve)' }}>
+              <div className="group cursor-default pt-1 sm:pt-2">
+                <div className="flex justify-between text-[10px] sm:text-xs transition-colors" style={{ color: 'var(--color-twilight-mauve)' }}>
                   <span className="font-bold" style={{ color: 'var(--color-bottlefly-wings)' }}>ADMIN_02</span>
-                  <span>[CREATIVE_DIR]</span>
+                  <span className="text-[9px] sm:text-[10px]">[CREATIVE_DIR]</span>
                 </div>
                 <div className="w-full h-[1px] my-1 group-hover:transition-colors" style={{ backgroundColor: 'var(--color-twilight-mauve)' }} />
-                <span className="text-[10px] block uppercase" style={{ color: 'var(--color-twilight-mauve)' }}>Visual Language & Apparel Design</span>
+                <span className="text-[9px] block uppercase" style={{ color: 'var(--color-twilight-mauve)' }}>Visual Language & Apparel Design</span>
               </div>
 
               {/* Founder 3 */}
-              <div className="group cursor-default pt-2">
-                <div className="flex justify-between text-xs transition-colors" style={{ color: 'var(--color-twilight-mauve)' }}>
-                  <span className="font-bold" style={{ color: 'var(--color-bottlefly-wings)' }}>ADMIN_03 // BRIAN</span>
-                  <span>[OPERATIONS]</span>
+              <div className="group cursor-default pt-1 sm:pt-2">
+                <div className="flex justify-between text-[10px] sm:text-xs transition-colors" style={{ color: 'var(--color-twilight-mauve)' }}>
+                  <span className="font-bold text-[10px] sm:text-xs" style={{ color: 'var(--color-bottlefly-wings)' }}>ADMIN_03 // BRIAN</span>
+                  <span className="text-[9px] sm:text-[10px]">[OPERATIONS]</span>
                 </div>
                 <div className="w-full h-[1px] my-1 group-hover:transition-colors" style={{ backgroundColor: 'var(--color-twilight-mauve)' }} />
-                <span className="text-[10px] block uppercase" style={{ color: 'var(--color-twilight-mauve)' }}>Logistics & Strategy Execution</span>
+                <span className="text-[9px] block uppercase" style={{ color: 'var(--color-twilight-mauve)' }}>Logistics & Strategy Execution</span>
               </div>
             </div>
           </div>
 
           {/* VERSION HISTORY / ROADMAP */}
-          <div className="border p-4 flex-grow flex flex-col justify-end" style={{ borderColor: 'var(--color-twilight-mauve)', backgroundColor: 'rgba(85, 48, 58, 0.1)' }}>
-            <h3 className="text-xs mb-4" style={{ color: 'var(--color-twilight-mauve)' }}>PATCH_NOTES</h3>
-            <ul className="text-xs space-y-2 font-mono" style={{ color: 'var(--color-twilight-mauve)' }}>
-              <li className="flex gap-4 opacity-50"><span>v0.1</span> <span>Concept Genesis</span></li>
-              <li className="flex gap-4 opacity-50"><span>v0.5</span> <span>Frontend Architecture</span></li>
-              <li className="flex gap-4 text-green-500 animate-pulse"><span className="text-green-700">v1.0</span> <span>System Live (Current)</span></li>
-              <li className="flex gap-4 opacity-30 mt-4"><span className="text-zinc-600">v2.0</span> <span>[REDACTED_DROP]</span></li>
+          <div className="border p-3 sm:p-4 flex-grow flex flex-col justify-end" style={{ borderColor: 'var(--color-twilight-mauve)', backgroundColor: 'rgba(85, 48, 58, 0.1)' }}>
+            <h3 className="text-[10px] sm:text-xs mb-2 sm:mb-4" style={{ color: 'var(--color-twilight-mauve)' }}>PATCH_NOTES</h3>
+            <ul className="text-[10px] sm:text-xs space-y-1 sm:space-y-2 font-mono" style={{ color: 'var(--color-twilight-mauve)' }}>
+              <li className="flex gap-2 sm:gap-4 opacity-50"><span>v0.1</span> <span className="truncate">Concept Genesis</span></li>
+              <li className="flex gap-2 sm:gap-4 opacity-50"><span>v0.5</span> <span className="truncate">Frontend Architecture</span></li>
+              <li className="flex gap-2 sm:gap-4 text-green-500 animate-pulse"><span className="text-green-700">v1.0</span> <span className="truncate">System Live (Current)</span></li>
+              <li className="flex gap-2 sm:gap-4 opacity-30 mt-2 sm:mt-4"><span className="text-zinc-600">v2.0</span> <span className="truncate">[REDACTED_DROP]</span></li>
             </ul>
           </div>
           
