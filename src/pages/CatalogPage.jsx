@@ -1,14 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TbCrosshair, TbBarcode, TbGridDots } from "react-icons/tb";
+import { TbCrosshair, TbGridDots, TbActivity } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import data from "../data/catalog.json";
-
-const R3LIK_DB = data;
+import { fetchCatalog } from "../utils/shopify";
 
 export default function CatalogPage() {
-  const [activeItem, setActiveItem] = useState(R3LIK_DB.items[0]);
+  const [items, setItems] = useState([]);
+  const [activeItem, setActiveItem] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [isHoveringEquip, setIsHoveringEquip] = useState(false);
+
+  // Fetch data from Shopify on component mount
+  useEffect(() => {
+    async function loadProducts() {
+      try {
+        const liveData = await fetchCatalog();
+        setItems(liveData);
+        if (liveData.length > 0) {
+          setActiveItem(liveData[0]); // Set the first product as the default active item
+        }
+      } catch (error) {
+        console.error("Failed to load catalog:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    
+    loadProducts();
+  }, []);
 
   const glitchVariant = {
     hover: {
@@ -18,6 +37,25 @@ export default function CatalogPage() {
     },
     rest: { x: 0, opacity: 1 },
   };
+
+  // Loading State UI
+  if (isLoading) {
+    return (
+      <div className="relative w-full min-h-screen flex flex-col items-center justify-center font-mono selection:bg-[#f4f4f4] selection:text-[#050505]" style={{ backgroundColor: 'var(--color-background)', color: 'var(--color-twilight-mauve)' }}>
+        <TbActivity className="text-4xl animate-pulse mb-4" style={{ color: 'var(--color-roan-rouge)' }} />
+        <p className="animate-pulse text-xs tracking-widest uppercase">Establishing Secure Connection to Inventory_DB...</p>
+      </div>
+    );
+  }
+
+  // Fallback if store is empty
+  if (!items.length || !activeItem) {
+    return (
+      <div className="relative w-full min-h-screen flex flex-col items-center justify-center font-mono selection:bg-[#f4f4f4] selection:text-[#050505]" style={{ backgroundColor: 'var(--color-background)', color: 'var(--color-twilight-mauve)' }}>
+        <p className="text-xs tracking-widest uppercase">ERR: NO_ASSETS_FOUND</p>
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full min-h-screen text-[#f4f4f4] flex flex-col selection:bg-[#f4f4f4] selection:text-[#050505]" style={{ backgroundColor: 'var(--color-background)' }}>
@@ -61,13 +99,13 @@ export default function CatalogPage() {
         <div className="md:col-span-6 border p-4 h-[75vh] overflow-y-auto custom-scrollbar" style={{ borderColor: 'var(--color-twilight-mauve)', backgroundColor: 'rgba(95, 79, 126, 0.1)' }}>
           <div className="flex justify-between items-center mb-6 pb-2" style={{ borderBottom: '1px solid', borderColor: 'var(--color-twilight-mauve)', color: 'var(--color-twilight-mauve)' }}>
             <h3 className="text-xs">
-              AVAILABLE_ASSETS ({R3LIK_DB.items.length})
+              AVAILABLE_ASSETS ({items.length})
             </h3>
             <TbGridDots />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {R3LIK_DB.items.map((item) => (
+            {items.map((item) => (
               <Link key={item.id} to={`/catalog/${item.id}`}>
                 <motion.div
                   onMouseEnter={() => setActiveItem(item)}
@@ -116,7 +154,7 @@ export default function CatalogPage() {
               transition={{ duration: 0.3 }}
               className="flex flex-col h-full z-10"
             >
-              {/* MODIFIED: Clickable Image / Mannequin Container */}
+              {/* Clickable Image / Mannequin Container */}
               <Link 
                 to={`/catalog/${activeItem.id}`}
                 className="flex-grow relative flex items-center justify-center p-4 group cursor-pointer overflow-hidden"
@@ -167,7 +205,7 @@ export default function CatalogPage() {
                   {activeItem.description}
                 </p>
 
-                {/* Equip Button (Add to Cart) */}
+                {/* Equip Button */}
                 <Link to={`/catalog/${activeItem.id}`} className="block w-full mt-auto">
                   <motion.button
                     onMouseEnter={() => setIsHoveringEquip(true)}
