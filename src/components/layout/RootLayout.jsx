@@ -5,9 +5,9 @@ import Footer from "./Footer";
 
 export default function RootLayout() {
   return (
-    <div className="relative w-full min-h-screen bg-[#050505] text-[#f4f4f4] flex flex-col selection:bg-[#f4f4f4] selection:text-[#050505]">
+    <div className="relative w-full min-h-screen bg-[#050505] text-[#f4f4f4] flex flex-col selection:bg-[#f4f4f4] selection:text-[#050505] overflow-x-hidden">
       {/* GLOBAL: Moving CRT Scanline */}
-      <div className="pointer-events-none fixed inset-0 z-50 opacity-10">
+      <div className="pointer-events-none fixed inset-0 z-50 opacity-10 overflow-hidden">
         <div className="w-full h-[10px] bg-white/20 blur-[2px] animate-scanline" />
       </div>
 
@@ -24,7 +24,7 @@ export default function RootLayout() {
       <Navbar />
 
       {/* Dynamic Page Content Injector */}
-      <main className="flex-grow relative z-10 flex flex-col w-full">
+      <main className="flex-grow relative z-10 flex flex-col w-full overflow-x-hidden">
         <Outlet />
       </main>
 
